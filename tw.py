@@ -100,8 +100,8 @@ def kl(user,nn):
 #
 
 def gmail():
-    took ='5591934454:AAEy8Xyulifx0LK4GQ9geXBWmqjOl3fKP1I'
-    idddd ='1548932732'
+    took =input('Enter Your Token Bot : ')
+    idddd =input('Enter Your ID Accouint : ')
     global a,b,s,j
     fil = open('username.txt','r').read().splitlines()
     for email in fil:
@@ -364,6 +364,7 @@ def login():
     elif ('"user":true,"authenticated":false') in rf.text:
         print('Password False')
 #########################################################################################333
+print('Gmail Tool Free 0.1 , @MVMVP')
 print('[1] - List username\n[2] - Checker\n[0] - Sessoinid')
 inp = str(input('[-] Enter Your :'))
 os.system('cls' if os.name=='nt'else'clear')
