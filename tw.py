@@ -11,7 +11,7 @@ user =''
 seessoin = input('Enter Your Sessoinid : ')
 
 nn=input('Enter Your User : ')
-os.system('cls' if os.name=='nt'else'clear')
+os.system('cls'if os.name=='nt'else'clear')
 def kl(user,nn):
     
     global a
@@ -76,8 +76,10 @@ def kl(user,nn):
         'x-instagram-ajax': '1006627630',
         'x-requested-with': 'XMLHttpRequest'
     }
-
-    geg= requests.get(url,headers=head22).json()
+    try:
+        geg= requests.get(url,headers=head22).json()
+    except requests.exceptions.JSONDecodeError as error:
+        print('Sessoinid Error')
     for i in range(0,fols):
         try:
             us = geg['users'][i]['username']
