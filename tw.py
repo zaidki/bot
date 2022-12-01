@@ -11,7 +11,7 @@ user =''
 seessoin = input('Enter Your Sessoinid : ')
 
 nn=input('Enter Your User : ')
-os.system('clear' if os.name=='nt'else'clear')
+os.system('cls' if os.name=='nt'else'clear')
 def kl(user,nn):
     
     global a
