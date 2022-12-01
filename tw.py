@@ -80,6 +80,7 @@ def kl(user,nn):
         geg= requests.get(url,headers=head22).json()
     except requests.exceptions.JSONDecodeError as error:
         print('Sessoinid Error')
+        exit()
     for i in range(0,fols):
         try:
             us = geg['users'][i]['username']
