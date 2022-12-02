@@ -4,6 +4,7 @@ import random
 import os 
 import json
 print('Activation finished')
+exit()
 a=0
 j=0
 b=0
